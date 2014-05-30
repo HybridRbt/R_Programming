@@ -1,5 +1,6 @@
 best <- function(state, outcome) {
-    ## 'stateName' is a 2-character abbreviated name of a state
+    ## 'stateName' is a 2-character abbreviated name of a state, outcome is 3 
+    ## kinds of diseases
    
     ## Read outcome data
     oc <- read.csv("outcome-of-care-measures.csv", colClasses = "character", na.strings = "Not Available")
