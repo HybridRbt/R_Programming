@@ -20,20 +20,20 @@ best <- function(state, outcome) {
     ## rate
     if (outcome == "heart attack") {
         heart.attack<-oc[oc$State==state, c("Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack", "Hospital.Name")]
-        order.heart.attack<-order(heart.attack$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, heart.attack$Hospital.Name)
+        order.heart.attack<-order(as.numeric(heart.attack$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack), heart.attack$Hospital.Name)
         best.ha <- heart.attack[order.heart.attack,]
         best.ha[1, 2]
     }
     else if (outcome == "heart failure") {
-        heart.failure<-oc[oc$State==state,"Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure"]
-        order.heart.failure<-order(as.numeric(heart.failure))
-        best.hf<-oc[order.heart.failure[1], "Hospital.Name"]
-        best.hf
+        heart.failure<-oc[oc$State==state, c("Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure", "Hospital.Name")]
+        order.heart.failure<-order(as.numeric(heart.failure$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure), heart.failure$Hospital.Name)
+        best.hf <- heart.failure[order.heart.failure,]
+        best.hf[1, 2]
     }
     else if (outcome == "pneumonia") {
-        pneumonia<-oc[oc$State==state,"Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia"]
-        order.pneumonia<-order(as.numeric(pneumonia[,2]))
-        best.p<-oc[order.pneumonia[1], "Hospital.Name"]
-        best.p
+        pneumonia<-oc[oc$State==state, c("Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia", "Hospital.Name")]
+        order.pneumonia<-order(as.numeric(pneumonia$Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia), pneumonia$Hospital.Name)
+        best.p <- pneumonia[order.pneumonia,]
+        best.p[1, 2]
     }
 }
